@@ -1,0 +1,26 @@
+<template name="Log">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> insert_recept}}
+	</div>
+</template>
+
+<template name="insert_recept">
+	{{> insertRecipesForm}}
+</template>
+
+<template name="insertRecipesForm">
+	{{#autoForm collection="Recipes" id="insertRecipesForm" type="insert"}}
+     <fieldset>
+       <legend>Add a Book</legend>
+       {{> afQuickField name='name'}}
+			    {{> afQuickField name='description'}}
+     </fieldset>
+     <button type="submit" class="btn btn-primary">Insert</button>
+   {{/autoForm}}
+</template>

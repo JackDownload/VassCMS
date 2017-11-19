@@ -1,0 +1,48 @@
+<template name="MediaLibrary">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> galery}}
+	</div>
+</template>
+
+<template name="galery">
+	<div class="row form-group">
+		{{#each file_list}}
+			{{> imagecard}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="imagecard">
+	<div class="col-xs-12 col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-image hide-panel-body">
+				<img src="{{url}}" class="panel-image-preview">
+			</div>
+			<div class="panel-body">
+				<p>
+					{{name}}
+					{{size}}kb
+				</p>
+			</div>
+			<div class="panel-footer text-center">
+				<div class="row">
+					<div class="col-md-4">
+						<h4>
+							{{name}}
+						</h4>
+					</div>
+					<button id="delete-button" class="fa fa-trash-o {{deleteButtonClass}}" title="Delete">
+						Button
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+

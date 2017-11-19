@@ -1,0 +1,119 @@
+<template name="Blog">
+	<div class="page-container container" id="content">
+		<div class="row" id="title_row">
+			<div class="col-md-12">
+				<div id="page_menu" class="pull-right">
+				</div>
+			</div>
+		</div>
+		{{> BlogRecipesBlog}}
+	</div>
+</template>
+
+<template name="BlogRecipesBlog">
+	<div id="blog-recipes-blog" class="">
+		<form id="dataview-controls" class="form-inline">
+			<div id="dataview-controls-search">
+				<div id="dataview-controls-search-group" class="form-group">
+					<label class="sr-only" for="search">
+						Search
+					</label>
+					<input type="text" class="form-control" id="dataview-search-input" placeholder="Search" name="search" value="{{searchString}}" autofocus="autofocus">
+					<button type="button" id="dataview-search-button" class="btn btn-primary">
+						<span class="fa fa-search">
+						</span>
+					</button>
+				</div>
+			</div>
+		</form>
+		{{#if isNotEmpty}}
+			{{#if isNotFound}}
+		<div class="alert alert-warning">
+			"{{searchString}}" not found.
+		</div>
+		{{else}}
+		<div id="dataview-data">
+			{{#if viewAsTable}} {{> BlogRecipesBlogTable}} {{/if}}{{#if viewAsBlog}} {{> BlogRecipesBlogBlog}} {{/if}}
+		</div>
+		{{/if}}
+		{{else}}
+		<div class="alert alert-info">
+			Empty.
+		</div>
+		{{/if}}
+	</div>
+</template>
+
+<template name="BlogRecipesBlogTable">
+	<table id="dataview-table" class="table table-striped">
+		<thead id="dataview-table-header">
+			<tr id="dataview-table-header-row">
+				<th class="th-sortable" data-sort="name">
+					Név
+				</th>
+				<th class="th-sortable" data-sort="description">
+					Elkészítés
+				</th>
+				<th class="th-sortable" data-sort="tag">
+					Tags
+				</th>
+				<th class="th-sortable" data-sort="coverimg">
+					Borítókép
+				</th>
+				<th class="th-sortable" data-sort="cover_container">
+					cover_container
+				</th>
+				<th class="th-sortable" data-sort="picker">
+					picker
+				</th>
+				<th class="th-sortable" data-sort="publicpost">
+					publicpost
+				</th>
+			</tr>
+		</thead>
+		<tbody id="dataview-table-items">
+			{{#each tableItems}} {{> BlogRecipesBlogTableItems}} {{/each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="BlogRecipesBlogTableItems">
+	<tr id="dataview-table-items-row">
+		<td>
+			{{name}}
+		</td>
+		<td>
+			{{description}}
+		</td>
+		<td>
+			{{tag}}
+		</td>
+		<td>
+			{{coverimg}}
+		</td>
+		<td>
+			{{displayPhoto cover_container}}
+		</td>
+		<td>
+			{{picker}}
+		</td>
+		<td>
+			<input type="checkbox" class="inline-checkbox {{editButtonClass}}" data-field="publicpost" {{checked publicpost}}>
+		</td>
+	</tr>
+</template>
+
+<template name="BlogRecipesBlogBlog">
+	<div class="row blog-container">
+		{{#each blogItems}} {{> BlogRecipesBlogBlogItems}} {{/each}}
+	</div>
+</template>
+
+<template name="BlogRecipesBlogBlogItems">
+	<div class="col-xs-12 blog-item">
+		<div class="blog-title-container">
+		</div>
+		<hr />
+	</div>
+</template>
+
